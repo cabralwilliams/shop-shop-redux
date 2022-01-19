@@ -4,6 +4,8 @@ import { QUERY_CATEGORIES } from '../../utils/queries';
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
+//Import store from GlobalState
+import { store } from "../../utils/GlobalState";
 
 function CategoryMenu() {
   //The below two lines of code use the useQuery hook to populate the data

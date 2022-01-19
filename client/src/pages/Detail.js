@@ -8,6 +8,8 @@ import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_PRODUCTS, REMOVE_FROM_CART, UPDATE_CART_QUANTITY, ADD_TO_CART } from "../utils/actions";
 import Cart from '../components/Cart';
 import { idbPromise } from '../utils/helpers';
+//Import store from GlobalState
+import { store } from "../../utils/GlobalState";
 
 function Detail() {
   const [state, dispatch] = useStoreContext();

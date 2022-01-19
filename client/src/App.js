@@ -18,6 +18,13 @@ import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import OrderHistory from './pages/OrderHistory';
 
+//Import the store from the GlobalState file and the Provider element from react-redux
+import { store } from './utils/GlobalState';
+import { Provider } from 'react-redux';
+
+//Create the store
+const store = createStore(reducer, { products: [], cart: [], cartOpen: false, categories: [], currentCategory: '' })
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -38,6 +45,29 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  //Duplicate the below but with redux coding to see if it works without getting rid of the working code
+  return(
+    <ApolloProvider client={client}>
+      <Router>
+        <div>
+          <Provider store={store}>
+            <Nav />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/orderHistory" component={OrderHistory} />
+              <Route exact path="/products/:id" component={Detail} />
+              <Route exact path="/success" component={Success} />
+              <Route component={NoMatch} />
+            </Switch>
+          </Provider>
+        </div>
+      </Router>
+    </ApolloProvider>
+  );
+
   return (
     <ApolloProvider client={client}>
       <Router>
