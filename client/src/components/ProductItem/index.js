@@ -1,17 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers"
-import { useStoreContext } from '../../utils/GlobalState';
-import { ADD_MULTIPLE_TO_CART, ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
-//Import store from GlobalState
-import { store } from "../../utils/GlobalState";
-import { useProductReducer } from "../../utils/reducers";
+//Import useSelector and useDispatch from react-redux to create the state and dispatch variables
 import { useSelector, useDispatch } from "react-redux";
 
 function ProductItem(item) {
-  //const [state, dispatch] = useStoreContext();
-  //const [state, dispatch] = useProductReducer(store.getState());
+  ///Create the state and dispatch functions - extract the state properties needed for ProductItem
   const state = useSelector(state => {
     return { cart: state.cart };
   });
@@ -51,13 +47,6 @@ function ProductItem(item) {
 
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
-  };
-
-  const addManyToCart = () => {
-    dispatch({
-      type: ADD_MULTIPLE_TO_CART,
-      product: { ...item, purchaseQuantity: item.quantity }
-    });
   };
 
   return (

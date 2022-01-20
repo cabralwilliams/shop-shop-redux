@@ -2,22 +2,18 @@ import React, { useEffect } from "react";
 import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import './style.css';
-import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import { QUERY_CHECKOUT } from "../../utils/queries";
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from "@apollo/client";
-//Import store from GlobalState
-import { store } from "../../utils/GlobalState";
-import { useProductReducer } from "../../utils/reducers";
+//Import useSelector and useDispatch from react-redux to create the state and dispatch variables
 import { useSelector, useDispatch } from "react-redux";
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
-    //const [state, dispatch] = useStoreContext();
-    //const [state, dispatch] = useProductReducer(store.getState());
+    //Create the state and dispatch functions - extract the state properties needed for Cart
     const state = useSelector(state => {
         return { cart: state.cart, cartOpen: state.cartOpen };
     });

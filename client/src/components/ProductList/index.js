@@ -1,20 +1,15 @@
 import React, { useEffect} from 'react';
 import { useQuery } from '@apollo/client';
-
 import ProductItem from '../ProductItem';
 import { QUERY_PRODUCTS } from '../../utils/queries';
 import spinner from '../../assets/spinner.gif';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
-import { useStoreContext } from '../../utils/GlobalState';
 import { idbPromise } from '../../utils/helpers';
-//Import store from GlobalState
-import { store } from "../../utils/GlobalState";
-import { useProductReducer } from "../../utils/reducers";
+//Import useSelector and useDispatch from react-redux to create the state and dispatch variables
 import { useSelector, useDispatch } from "react-redux";
 
 function ProductList() {
-  //const [state, dispatch] = useStoreContext();
-  //const [state, dispatch] = useProductReducer(store.getState());
+  //Create the state and dispatch functions - extract the state properties needed for ProductList
   const state = useSelector(state => {
     return { currentCategory: state.currentCategory, products: state.products };
   });
