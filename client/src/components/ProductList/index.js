@@ -9,9 +9,16 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { idbPromise } from '../../utils/helpers';
 //Import store from GlobalState
 import { store } from "../../utils/GlobalState";
+import { useProductReducer } from "../../utils/reducers";
+import { useSelector, useDispatch } from "react-redux";
 
 function ProductList() {
-  const [state, dispatch] = useStoreContext();
+  //const [state, dispatch] = useStoreContext();
+  //const [state, dispatch] = useProductReducer(store.getState());
+  const state = useSelector(state => {
+    return { currentCategory: state.currentCategory, products: state.products };
+  });
+  const dispatch = useDispatch();
   const { currentCategory } = state;
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 

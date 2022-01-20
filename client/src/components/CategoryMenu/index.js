@@ -6,15 +6,21 @@ import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions'
 import { idbPromise } from '../../utils/helpers';
 //Import store from GlobalState
 import { store } from "../../utils/GlobalState";
+import { useProductReducer } from "../../utils/reducers";
+import { useSelector, useDispatch } from "react-redux";
 
 function CategoryMenu() {
   //The below two lines of code use the useQuery hook to populate the data
   // const { data: categoryData } = useQuery(QUERY_CATEGORIES);
-  // const categories = categoryData?.categories || [];
   //This updated version uses GlobalState to populate the data
-  const [state, dispatch] = useStoreContext();
-  const { categories } = state;
+  // const [state, dispatch] = useStoreContext();
+  //const [state, dispatch] = useProductReducer(store.getState());
+  const state = useSelector(state => {
+    return { categories: state.categories, currentCategory: state.currentCategory };
+  });
+  const dispatch = useDispatch();
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+  const categories = categoryData?.categories || [];
 
   useEffect(() => {
     //If categoryData exists or has changed from the response of useQuery, then run dispatch()
@@ -36,7 +42,7 @@ function CategoryMenu() {
         });
       });
     }
-  }, [categoryData, dispatch, loading]);
+  }, [categoryData, loading, dispatch]);
 
   const handleClick = id => {
     dispatch({

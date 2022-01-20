@@ -10,11 +10,19 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from "@apollo/client";
 //Import store from GlobalState
 import { store } from "../../utils/GlobalState";
+import { useProductReducer } from "../../utils/reducers";
+import { useSelector, useDispatch } from "react-redux";
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
-    const [state, dispatch] = useStoreContext();
+    //const [state, dispatch] = useStoreContext();
+    //const [state, dispatch] = useProductReducer(store.getState());
+    const state = useSelector(state => {
+        return { cart: state.cart, cartOpen: state.cartOpen };
+    });
+    const dispatch = useDispatch();
+    console.log(state);
     const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
     useEffect(() => {
@@ -38,6 +46,7 @@ const Cart = () => {
 
     function toggleCart() {
         dispatch({ type: TOGGLE_CART });
+        console.log(state);
     }
 
     function calculateTotal() {

@@ -6,9 +6,16 @@ import { ADD_MULTIPLE_TO_CART, ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../u
 import { idbPromise } from '../../utils/helpers';
 //Import store from GlobalState
 import { store } from "../../utils/GlobalState";
+import { useProductReducer } from "../../utils/reducers";
+import { useSelector, useDispatch } from "react-redux";
 
 function ProductItem(item) {
-  const [state, dispatch] = useStoreContext();
+  //const [state, dispatch] = useStoreContext();
+  //const [state, dispatch] = useProductReducer(store.getState());
+  const state = useSelector(state => {
+    return { cart: state.cart };
+  });
+  const dispatch = useDispatch();
 
   const {
     image,

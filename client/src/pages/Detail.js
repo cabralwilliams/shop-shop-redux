@@ -9,10 +9,17 @@ import { UPDATE_PRODUCTS, REMOVE_FROM_CART, UPDATE_CART_QUANTITY, ADD_TO_CART } 
 import Cart from '../components/Cart';
 import { idbPromise } from '../utils/helpers';
 //Import store from GlobalState
-import { store } from "../../utils/GlobalState";
+import { store } from "../utils/GlobalState";
+import { useProductReducer } from "../utils/reducers";
+import { useSelector, useDispatch } from "react-redux";
 
 function Detail() {
-  const [state, dispatch] = useStoreContext();
+  //const [state, dispatch] = useStoreContext();
+  //const [state, dispatch] = useProductReducer(store.getState());
+  const state = useSelector(state => {
+    return { products: state.products, cart: state.cart };
+  });
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   const [currentProduct, setCurrentProduct] = useState({});
