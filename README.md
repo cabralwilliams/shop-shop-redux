@@ -5,7 +5,7 @@
   ![That's a lot of toilet paper.](./client/public/images/ssr_screenshot1.jpg)
 
   ## Description
-  Shop Shop Redux is a simulated ecommerce application that allows a user to register with the application and then browse through the applications available products, adding and removing products to a virtual shopping cart.  When the user is ready to confirm purchase of the items in the shopping cart, the user is taken to a checkout page, where the user is able to add credit card information and complete the purchase.  (Again, this is a simulation, and the user should not enter real credit card information.)  Lastly, the user is able to access a record of his/her past orders through a link in the application.  This application is built using React and utilizes Redux to maintain global state.
+  Shop Shop Redux is a simulated ecommerce application that allows a user to register with the application and then browse through the application's available products, adding and removing products to a virtual shopping cart.  When the user is ready to confirm purchase of the items in the shopping cart, the user is taken to a checkout page, where the user is able to add credit card information and complete the purchase.  (Again, this is a simulation, and the user should not enter real credit card information.)  Lastly, the user is able to access a record of his/her past orders through a link in the application.  This application is built using React and utilizes Redux to maintain global state.
   
   ## Link
   [Shop Shop Redux](https://stark-forest-79910.herokuapp.com/)
